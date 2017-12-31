@@ -19,8 +19,23 @@ public class StopWatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_watch);
 
+        if (savedInstanceState != null){
+            //Retrieves the values of the seconds and running variables from the Bundle.
+            seconds = savedInstanceState.getInt("seconds");
+            running = savedInstanceState.getBoolean("running");
+        }
+
         //Separate method to update the stopwatch. We’re starting it when the activity is created.
         runTimer();
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        //Saves the values of the seconds and running variables to the Bundle.
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putBoolean("running", running);
     }
 
     //Starts the stopwatch running whe Start is clicked.
